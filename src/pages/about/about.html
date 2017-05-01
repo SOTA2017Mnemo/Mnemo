@@ -1,11 +1,31 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      About
+      2017年5月1日
     </ion-title>
+    <ion-buttons end>
+      <button ion-button color="primary">写好了</button>
+    </ion-buttons>
   </ion-navbar>
+  <ion-toolbar>
+    <ion-buttons end>
+      <button ion-button>
+        <ion-icon name="image" class="writeIcons"></ion-icon>
+      </button>
+      <button ion-button>
+        <ion-icon name="partly-sunny" class="writeIcons"></ion-icon>
+      </button>
+      <button ion-button>
+        <ion-icon name="pin" class="writeIcons"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-
+<ion-content>
+  <ion-textarea placeholder="此刻我想说..." class="diary_content" (click)="scrollToBottom()" tappable>
+      
+  </ion-textarea>
+  
 </ion-content>
+

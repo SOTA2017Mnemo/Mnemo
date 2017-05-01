@@ -1,17 +1,59 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Contact
+      帐号设置
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
+<ion-content class="outer-content">
+  <ion-item-group>
+    <ion-item-divider></ion-item-divider>
+    <button ion-item large>
+      头像
+      <ion-thumbnail item-right>
+        <img src="res/icon.png">
+      </ion-thumbnail>
+    </button>
+    <button ion-item>
+      昵称
+      <ion-note item-right>
+          keyrm
+      </ion-note>
+    </button>
+    <button ion-item>生日</button>
+    <button ion-item>
+      性别
+      <ion-note item-right>
+          男
+      </ion-note>
+    </button>
+  </ion-item-group>
+  <ion-item-group>
+    <ion-item-divider></ion-item-divider>
     <ion-item>
-      <ion-icon name="ionic" item-left></ion-icon>
-      @ionicframework
+      <ion-label>每日提醒</ion-label>
+      <ion-toggle checked="false"></ion-toggle>
     </ion-item>
-  </ion-list>
+    <button ion-item>
+      提醒时间
+      <ion-note item-right>
+          8:30pm
+      </ion-note>
+    </button>
+  </ion-item-group>
+  <ion-item-group>
+    <ion-item-divider></ion-item-divider>
+    <ion-item>
+      <ion-label>设置密码锁</ion-label>
+      <ion-toggle checked="false"></ion-toggle>
+    </ion-item>
+    <button ion-item>
+      更改密码
+    </button>
+  </ion-item-group>
+  <ion-item-group>
+    <ion-item-divider></ion-item-divider>
+  </ion-item-group>
+  <button ion-button full color="danger">注销</button>
 </ion-content>
