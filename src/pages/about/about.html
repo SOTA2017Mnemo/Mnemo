@@ -10,17 +10,24 @@
 
 </ion-header>
 
-<ion-content>
-  <ion-textarea placeholder="此刻我想说..." class="diary_content">
+
+<ion-content overflow-scroll="false">
+  <ion-slides style="margin: 5px auto;border-radius: 5% ;max-width: 70%; max-height: 30%">
+    <ion-slide *ngFor="let pic of pics">
+      <img src="{{pic.path}}" />
+    </ion-slide>
+  </ion-slides>
+  <ion-textarea placeholder="此刻我想说..." class="diary_content" >
       
   </ion-textarea>
-  
 </ion-content>
+
 
 <ion-footer>
   <ion-toolbar>
+    <label>已上传{{count}}/5张图片</label>
     <ion-buttons end>
-      <button ion-button>
+      <button ion-button (click)="choosePhoto()">
         <ion-icon name="image" class="writeIcons"></ion-icon>
       </button>
       <button ion-button>
@@ -32,4 +39,3 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>
-
