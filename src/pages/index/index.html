@@ -8,6 +8,7 @@
     <ion-fab right bottom>
         <button ion-fab color="light" (click)="itemTapped($event)"><ion-icon name="create"></ion-icon></button>
     </ion-fab>
+    
     <ion-slides class="ionSlides">
         <ion-slide>
             <table class="calender">
@@ -32,6 +33,35 @@
                 </tr>
             </table>
         </ion-slide>
+
+        <ion-slide>
+            <table class="calender">
+                <tr>
+                    <td *ngFor="let string of week">
+                        <div class="weekdays">
+                            {{string}}
+                        </div>
+                    </td>
+                </tr>
+                <tr *ngFor="let week of dates">
+                    <td *ngFor="let date of week.week" [ngClass]="{'clicked':clicked == date.date}" (click)="setClicked(date.date)" tappable>
+                        <div>
+                            <div class="dates">
+                                {{date.date}}
+                            </div>
+                            <div class="festival">
+                                愚人节
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </ion-slide>
+
+
+
+
+
     </ion-slides>
     <ion-list>
         <ion-list-header class="listHeader">

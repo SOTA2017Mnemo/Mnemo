@@ -46,4 +46,8 @@ export class IndexPage {
         this.clicked=number;
     }
 
+    ionViewDidEnter(){
+        this.goToSlide();
+    }
+
 }

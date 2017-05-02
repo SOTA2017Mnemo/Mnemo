@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { YearsPage } from '../years/years';
 import { ContactPage } from '../contact/contact';
 import { IndexPage } from '../index/index';
-
+ 
 @Component({
   templateUrl: 'tabs.html'
 })

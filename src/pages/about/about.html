@@ -7,6 +7,17 @@
       <button ion-button color="primary">写好了</button>
     </ion-buttons>
   </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-textarea placeholder="此刻我想说..." class="diary_content">
+      
+  </ion-textarea>
+  
+</ion-content>
+
+<ion-footer>
   <ion-toolbar>
     <ion-buttons end>
       <button ion-button>
@@ -20,12 +31,5 @@
       </button>
     </ion-buttons>
   </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <ion-textarea placeholder="此刻我想说..." class="diary_content" (click)="scrollToBottom()" tappable>
-      
-  </ion-textarea>
-  
-</ion-content>
+</ion-footer>
 

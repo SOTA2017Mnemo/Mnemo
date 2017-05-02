@@ -15,9 +15,4 @@ export class AboutPage {
   constructor(public navCtrl: NavController) {
 
   }
-
-  scrollToBottom() {
-    this.content.scrollToBottom();
-  }
-
 }
