@@ -9,7 +9,8 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { YearsPage } from '../pages/years/years';
 import { IndexPage } from '../pages/index/index';
-
+import { HttpModule }    from '@angular/http';
+import { UserService } from '../services/UserService';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -24,6 +25,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     IndexPage
   ],
   imports: [
+    HttpModule,
     BrowserModule,
     IonicModule.forRoot(MyApp,{
       tabsHideOnSubPages: 'true'         //隐藏全部子页面tabs
@@ -40,6 +42,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     IndexPage
   ],
   providers: [
+    UserService,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
