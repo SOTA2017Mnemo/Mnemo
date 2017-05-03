@@ -7,14 +7,28 @@ import 'rxjs/add/operator/map';
 export class UserService {
   
   constructor(private http: Http) { }
-  register(account,password) {
+  login(account,password) {
     let headers = new Headers({
             'Content-Type': 'application/x-www-form-urlencoded'
         });
         let options = new RequestOptions({
             headers: headers
         });
-    let body= "method=register&account="+account+"&password="+password;
+    let body= "method=login&account="+account+"&password="+password;
+    return new Promise((resolve, reject) => {
+      this.http.post('http://dev.note.tunnel.qydev.com/user', body, options )
+        .map(res => res.json())
+        .subscribe(data => resolve(data), err => reject(err))
+    })
+  }
+  register(account,password,name) {
+    let headers = new Headers({
+            'Content-Type': 'application/x-www-form-urlencoded'
+        });
+        let options = new RequestOptions({
+            headers: headers
+        });
+    let body= "method=register&account="+account+"&password="+password+"&name="+name;
     return new Promise((resolve, reject) => {
       this.http.post('http://dev.note.tunnel.qydev.com/user', body, options )
         .map(res => res.json())
