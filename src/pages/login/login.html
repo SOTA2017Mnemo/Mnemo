@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      登陆
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">取消</span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content padding>
+<ion-list>
+  <ion-item><ion-input [(ngModel)]="account" placeholder="account"></ion-input></ion-item>
+  <ion-item><ion-input [(ngModel)]="password" placeholder="password" type="password"></ion-input></ion-item>
+  <ion-item><ion-input [(ngModel)]="username" placeholder="name"></ion-input></ion-item>
+</ion-list>
+
+<p padding>
+  <button ion-button color="danger" block (click)="login()">登录</button>
+  <a (click)="call()">注册账户</a>
+</p>
+
+</ion-content>

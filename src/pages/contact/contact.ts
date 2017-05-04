@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
 import { ChangePage } from '../change/change'
+
+import { ModalController,NavController,NavParams } from 'ionic-angular';
+import { LoginPage } from '../login/login'
 
 @Component({
   selector: 'page-contact',
@@ -14,7 +16,8 @@ export class ContactPage {
   gender:string
   birthday:string
   alertTime:string
-  constructor(public navCtrl: NavController) {
+  isLogin:boolean=false;
+  constructor(public navCtrl: NavController,public modalCtrl:ModalController) {
     this.name="keyrm";
     this.alert=true;
     this.password=false;
@@ -26,5 +29,16 @@ export class ContactPage {
       name: this.name
     });
   }
-
+  toLogin(){
+  	let loginModal=this.modalCtrl.create(LoginPage);
+  	loginModal.onDidDismiss(data=>{
+  	 if(data==="ok"){
+  	 	this.isLogin=true;
+  	 }
+  	})
+  	loginModal.present();
+  }
+  logout(){
+  	this.isLogin=false;
+  }
 }

@@ -12,6 +12,9 @@ import { IndexPage } from '../pages/index/index';
 import { ChangePage } from '../pages/change/change';
 import { DiaryDetailsPage } from '../pages/diaryDetails/diaryDetails';
 
+import { LoginPage } from '../pages/login/login'
+import { HttpModule }    from '@angular/http';
+import { UserService } from '../services/UserService';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -27,9 +30,11 @@ import { PhotoLibrary } from '@ionic-native/photo-library';
     YearsPage,
     IndexPage,
     ChangePage,
-    DiaryDetailsPage
+    DiaryDetailsPage,
+    LoginPage
   ],
   imports: [
+    HttpModule,
     BrowserModule,
     IonicModule.forRoot(MyApp,{
       tabsHideOnSubPages: 'true'         //隐藏全部子页面tabs
@@ -44,11 +49,13 @@ import { PhotoLibrary } from '@ionic-native/photo-library';
     TabsPage,
     YearsPage,
     IndexPage,
+    LoginPage,
     ChangePage,
     DiaryDetailsPage
   ],
   providers: [
     PhotoLibrary,
+    UserService,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
