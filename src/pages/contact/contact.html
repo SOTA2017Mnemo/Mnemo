@@ -10,46 +10,50 @@
   <ion-item-group>
     <ion-item-divider></ion-item-divider>
     <button ion-item large>
-      头像
+      <ion-label>头像</ion-label>
       <ion-thumbnail item-right>
         <img src="res/icon.png">
       </ion-thumbnail>
     </button>
-    <button ion-item>
-      昵称
+    <button ion-item (click)="itemTapped($event)">
+      <ion-label>昵称</ion-label>
       <ion-note item-right>
-          keyrm
+          {{name}}
       </ion-note>
     </button>
-    <button ion-item>生日</button>
-    <button ion-item>
-      性别
-      <ion-note item-right>
-          男
-      </ion-note>
-    </button>
+    <ion-item class="gray-font">
+      <ion-label class="black-font">生日</ion-label>
+      <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="birthday"></ion-datetime>
+    </ion-item>
+    <ion-item class="gray-font">
+      <ion-label class="black-font">性别</ion-label>
+      <ion-select [(ngModel)]="gender">
+        <ion-option value="f">女</ion-option>
+        <ion-option value="m">男</ion-option>
+      </ion-select>
+    </ion-item>
   </ion-item-group>
   <ion-item-group>
     <ion-item-divider></ion-item-divider>
     <ion-item>
       <ion-label>每日提醒</ion-label>
-      <ion-toggle checked="false"></ion-toggle>
+      <ion-toggle [(ngModel)]="alert"></ion-toggle>
     </ion-item>
-    <button ion-item>
-      提醒时间
+    <ion-item>
+      <ion-label>提醒时间</ion-label>
       <ion-note item-right>
-          8:30pm
+        <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="alertTime" [disabled]="!alert"></ion-datetime>
       </ion-note>
-    </button>
+    </ion-item>
   </ion-item-group>
   <ion-item-group>
     <ion-item-divider></ion-item-divider>
     <ion-item>
       <ion-label>设置密码锁</ion-label>
-      <ion-toggle checked="false"></ion-toggle>
+      <ion-toggle [(ngModel)]="password"></ion-toggle>
     </ion-item>
-    <button ion-item>
-      更改密码
+    <button ion-item [disabled]="!password">
+      <ion-label>更改密码</ion-label>
     </button>
   </ion-item-group>
   <ion-item-group>

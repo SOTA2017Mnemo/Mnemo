@@ -9,10 +9,13 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { YearsPage } from '../pages/years/years';
 import { IndexPage } from '../pages/index/index';
-import { LoginPage } from '../pages/login/login';
+import { ChangePage } from '../pages/change/change';
+import { DiaryDetailsPage } from '../pages/diaryDetails/diaryDetails';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+
+import { PhotoLibrary } from '@ionic-native/photo-library';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TabsPage,
     YearsPage,
     IndexPage,
-    LoginPage
+    ChangePage,
+    DiaryDetailsPage
   ],
   imports: [
     BrowserModule,
@@ -40,9 +44,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TabsPage,
     YearsPage,
     IndexPage,
-    LoginPage
+    ChangePage,
+    DiaryDetailsPage
   ],
   providers: [
+    PhotoLibrary,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
