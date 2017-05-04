@@ -9,6 +9,7 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { YearsPage } from '../pages/years/years';
 import { IndexPage } from '../pages/index/index';
+import { LoginPage } from '../pages/login/login'
 import { HttpModule }    from '@angular/http';
 import { UserService } from '../services/UserService';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -22,7 +23,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     TabsPage,
     YearsPage,
-    IndexPage
+    IndexPage,
+    LoginPage
   ],
   imports: [
     HttpModule,
@@ -39,7 +41,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     TabsPage,
     YearsPage,
-    IndexPage
+    IndexPage,
+    LoginPage
   ],
   providers: [
     UserService,

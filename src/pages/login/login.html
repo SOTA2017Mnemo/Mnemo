@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>登录</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+<ion-item-group>
+  <ion-item><input [(ngModel)]="account" placeholder="account" /></ion-item>
+  <ion-item><input [(ngModel)]="password" placeholder="password" /></ion-item>
+  <ion-item><input [(ngModel)]="username" placeholder="name" /></ion-item>
+  <ion-item><button (click)="call()">register</button></ion-item>
+  <ion-item><button (click)="login()">login</button></ion-item>
+</ion-item-group>
+
+
+</ion-content>
