@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { AboutPage } from '../about/about';
+import { WritePage } from '../write/write';
 import { ViewChild } from '@angular/core';
 import { Slides } from 'ionic-angular';
 
@@ -39,7 +39,7 @@ export class IndexPage {
     }
 
     itemTapped(event) {
-        this.navCtrl.push(AboutPage);
+        this.navCtrl.push(WritePage);
     }
 
     setClicked(number){

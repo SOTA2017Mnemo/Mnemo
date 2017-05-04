@@ -5,10 +5,10 @@ import { NavController} from 'ionic-angular';
 import { Camera } from 'ionic-native';
 import { Slides } from 'ionic-angular';//注入轮播
 @Component({
-  selector: 'page-about',
-  templateUrl: 'about.html'
+  selector: 'page-write',
+  templateUrl: 'write.html'
 })
-export class AboutPage{
+export class WritePage{
   @ViewChild(Slides) slides: Slides;
 
   public path;

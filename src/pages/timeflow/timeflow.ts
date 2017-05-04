@@ -5,10 +5,10 @@ import { DiaryDetailsPage } from '../diaryDetails/diaryDetails'
 
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-timeflow',
+  templateUrl: 'timeflow.html'
 })
-export class HomePage {
+export class TimeflowPage {
 
   constructor(public navCtrl: NavController) {
 

@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { ChangePage } from '../change/change'
+import { ChangePage } from './change/change'
 
 import { ModalController,NavController,NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login'
 
 @Component({
-  selector: 'page-contact',
-  templateUrl: 'contact.html'
+  selector: 'page-account',
+  templateUrl: 'account.html'
 })
-export class ContactPage {
+export class AccountPage {
 
   name:string
   alert:boolean

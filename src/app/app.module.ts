@@ -3,55 +3,62 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
+
+import { WritePage } from '../pages/write/write';
+import { AccountPage } from '../pages/account/account';
+import { TimeflowPage } from '../pages/timeflow/timeflow';
 import { TabsPage } from '../pages/tabs/tabs';
 import { YearsPage } from '../pages/years/years';
 import { IndexPage } from '../pages/index/index';
-import { ChangePage } from '../pages/change/change';
+import { ChangePage } from '../pages/account/change/change';
 import { DiaryDetailsPage } from '../pages/diaryDetails/diaryDetails';
-
+import { WelcomePage } from '../pages/welcome/welcome';
 import { LoginPage } from '../pages/login/login'
+
+
 import { HttpModule }    from '@angular/http';
 import { UserService } from '../services/UserService';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { PhotoLibrary } from '@ionic-native/photo-library';
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
+    WritePage,
+    AccountPage,
+    TimeflowPage,
     TabsPage,
     YearsPage,
     IndexPage,
     ChangePage,
     DiaryDetailsPage,
-    LoginPage
+    LoginPage,
+    WelcomePage
   ],
   imports: [
     HttpModule,
     BrowserModule,
     IonicModule.forRoot(MyApp,{
       tabsHideOnSubPages: 'true'         //隐藏全部子页面tabs
-    })
+    }),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
+    WritePage,
+    AccountPage,
+    TimeflowPage,
     TabsPage,
     YearsPage,
     IndexPage,
     LoginPage,
     ChangePage,
-    DiaryDetailsPage
+    DiaryDetailsPage,
+    WelcomePage
   ],
   providers: [
     PhotoLibrary,
