@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { ViewController } from 'ionic-angular';
 import {UserService} from '../../services/UserService';
 @Component({
   selector: 'page-login',
@@ -10,7 +10,7 @@ export class LoginPage {
 	password:any;
 	username:any;
 	check:any;
-  constructor(public navCtrl: NavController,private userService: UserService) {
+  constructor(public viewCtrl: ViewController,private userService: UserService) {
 
   }
   call(){
@@ -31,6 +31,8 @@ export class LoginPage {
   afterLogin(data){
   	if(data.status==="200"){
   		alert("Login success！");
+      let data = "ok";
+      this.viewCtrl.dismiss(data);
   	}else{
   		alert("Invalid account/password!");
   	}
