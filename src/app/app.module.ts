@@ -18,6 +18,7 @@ import { LoginPage } from '../pages/login/login'
 
 import { HttpModule }    from '@angular/http';
 import { UserService } from '../services/UserService';
+import { HttpService } from '../services/HttpService';
 import { DiaryService } from '../services/DiaryService';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -63,6 +64,7 @@ import { PhotoLibrary } from '@ionic-native/photo-library';
   ],
   providers: [
     PhotoLibrary,
+    HttpService,
     UserService,
     DiaryService,
     StatusBar,
