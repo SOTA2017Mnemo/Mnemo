@@ -18,6 +18,7 @@ import { LoginPage } from '../pages/login/login'
 
 import { HttpModule }    from '@angular/http';
 import { UserService } from '../services/UserService';
+import { DiaryService } from '../services/DiaryService';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';
@@ -63,6 +64,7 @@ import { PhotoLibrary } from '@ionic-native/photo-library';
   providers: [
     PhotoLibrary,
     UserService,
+    DiaryService,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
