@@ -7,14 +7,14 @@ import 'rxjs/add/operator/map';
 export class DiaryService {
   url='http://120.76.144.133:9080/Diary/diary';
   constructor(private http: Http) { }
-  writeDiary(title,userId,content,weather) {
+  writeDiary(userId,content,weather,imgPath,picPath) {
     let headers = new Headers({
             'Content-Type': 'application/x-www-form-urlencoded'
         });
         let options = new RequestOptions({
             headers: headers
         });
-    let body= "method=writeDiary&title="+title+"&userId="+userId+"&content="+content+"&weather="+weather;
+    let body= "method=writeDiary&userId="+userId+"&content="+content+"&weather="+weather+"&imgPath="+imgPath+"&picPath="+picPath;
     return new Promise((resolve, reject) => {
       this.http.post(this.url, body, options )
         .map(res => res.json())
