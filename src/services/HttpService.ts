@@ -36,7 +36,7 @@ export class HttpService {
   }
   almanac() {
     return new Promise((resolve, reject) => {
-      this.http.post('http://120.76.144.133:9080/Diary/almanac')
+      this.http.post('http://120.76.144.133:9080/Diary/almanac',{})
         .map(res => res.json())
         .subscribe(data => resolve(data), err => reject(err))
     })

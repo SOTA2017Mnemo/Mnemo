@@ -22,8 +22,7 @@ export class MyApp {
             this.rootPage = TabsPage; 
           }
           else{
-            //this.rootPage = LoginPage;
-            this.rootPage = TabsPage; 
+            this.rootPage = LoginPage;
           }
         })
       } 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ViewController,NavController } from 'ionic-angular';
-import {UserService} from '../../services/UserService';
+import { UserService } from '../../services/UserService';
 import { Storage } from '@ionic/storage';
 import { TabsPage } from '../tabs/tabs'
 
@@ -25,6 +25,7 @@ export class LoginPage {
   login(){
   	this.userService.login(this.account,this.password).then(data=>this.afterLogin(data));
   }
+  
   afterRegister(data){
     if(data.status==="200"){
       alert("Register success！");
@@ -37,13 +38,15 @@ export class LoginPage {
       alert("Something is wrong with your registration...");
     }
   }
+
   afterLogin(data){
   	if(data.status==="200"){
-  		alert("Login success！");
       this.storage.ready().then(() => {
         this.storage.set("isLogin",true);
         this.storage.set('account',this.account);
         this.storage.set('password',this.password);
+        alert(JSON.parse(data.data).id);
+        this.storage.set('id',JSON.parse(data.data).id);
       });
       this.navCtrl.setRoot(TabsPage);
   	}else{
