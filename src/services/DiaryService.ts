@@ -4,31 +4,45 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class UserService {
-  url='http://http://120.76.144.133:9080/Diary/user';
+export class DiaryService {
+  url='http://120.76.144.133:9080/Diary/diary';
   constructor(private http: Http) { }
-  login(account,password) {
+  writeDiary(title,userId,content,weather) {
     let headers = new Headers({
             'Content-Type': 'application/x-www-form-urlencoded'
         });
         let options = new RequestOptions({
             headers: headers
         });
-    let body= "method=login&account="+account+"&password="+password;
+    let body= "method=writeDiary&title="+title+"&userId="+userId+"&content="+content+"&weather="+weather;
     return new Promise((resolve, reject) => {
       this.http.post(this.url, body, options )
         .map(res => res.json())
         .subscribe(data => resolve(data), err => reject(err))
     })
   }
-  register(account,password,name) {
+  queryDiary(id) {
     let headers = new Headers({
             'Content-Type': 'application/x-www-form-urlencoded'
         });
         let options = new RequestOptions({
             headers: headers
         });
-    let body= "method=register&account="+account+"&password="+password+"&name="+name;
+    let body= "method=queryDiary&diary_id="+id;
+    return new Promise((resolve, reject) => {
+      this.http.post(this.url, body, options )
+        .map(res => res.json())
+        .subscribe(data => resolve(data), err => reject(err))
+    })
+  }
+  diaryList(index,count,id) {
+    let headers = new Headers({
+            'Content-Type': 'application/x-www-form-urlencoded'
+        });
+        let options = new RequestOptions({
+            headers: headers
+        });
+    let body= "method=diaryList&index="+index+"&count="+count+"&user_id="+id;
     return new Promise((resolve, reject) => {
       this.http.post(this.url, body, options )
         .map(res => res.json())

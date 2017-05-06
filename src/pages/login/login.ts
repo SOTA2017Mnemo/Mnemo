@@ -13,24 +13,30 @@ export class LoginPage {
 	password:any;
 	username:any;
 	check:any;
+  tip:any='注册';
+  toLogin=1;
   constructor(public viewCtrl: ViewController,private userService: UserService,public storage: Storage,public navCtrl: NavController) {
 
   }
-
-  call(){
-    this.userService.register(this.account,this.password,this.username).then(data=>console.log(data));
-    //this.httpService.testio();
-    //this.httpService.post();
-    //this.httpService.post2();
-    //this.httpService.request('http://dev.note.tunnel.qydev.com/user?method=register&account=test123&password=123456');
-    //this.httpService.request('http://120.76.144.133:8080/greeting');
-    //this.httpService.greeting().then(mobile => {this.mobile=mobile;this.check=this.mobile.id;});
+  register(){
+    this.userService.register(this.account,this.password,this.username).then(data=>this.afterRegister(data));
   }
 
   login(){
   	this.userService.login(this.account,this.password).then(data=>this.afterLogin(data));
   }
-
+  afterRegister(data){
+    if(data.status==="200"){
+      alert("Register success！");
+      this.storage.ready().then(() => {
+        this.storage.set('account',this.account);
+        this.storage.set('password',this.password);
+      });
+      this.navCtrl.setRoot(TabsPage);
+    }else{
+      alert("Something is wrong with your registration...");
+    }
+  }
   afterLogin(data){
   	if(data.status==="200"){
   		alert("Login success！");
@@ -44,5 +50,16 @@ export class LoginPage {
   		alert("Invalid account/password!");
   	}
   }
+
+  toggle(){
+  this.toLogin=1-this.toLogin;
+  if(this.toLogin==1){
+    this.tip='注册';
+  }else{
+    this.tip='登录';
+  }
+  }
+      
+  
 
 }

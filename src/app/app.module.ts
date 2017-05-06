@@ -19,6 +19,8 @@ import { PicDetailsPage } from '../pages/diaryDetails/picDetails/picDetails'
 
 import { HttpModule }    from '@angular/http';
 import { UserService } from '../services/UserService';
+import { HttpService } from '../services/HttpService';
+import { DiaryService } from '../services/DiaryService';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';
@@ -67,7 +69,9 @@ import { CDVPhotoLibraryPipe } from './cdvphotolibrary.pipe.ts';
   ],
   providers: [
     PhotoLibrary,
+    HttpService,
     UserService,
+    DiaryService,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

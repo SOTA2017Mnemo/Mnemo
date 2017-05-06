@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      登陆
+      开启探索
     </ion-title>
   </ion-toolbar>
 
@@ -11,12 +11,13 @@
 <ion-list>
   <ion-item><ion-input [(ngModel)]="account" placeholder="account"></ion-input></ion-item>
   <ion-item><ion-input [(ngModel)]="password" placeholder="password" type="password"></ion-input></ion-item>
-  <ion-item><ion-input [(ngModel)]="username" placeholder="name"></ion-input></ion-item>
+  <ion-item [hidden]="toLogin"><ion-input [(ngModel)]="username" placeholder="name"></ion-input></ion-item>
 </ion-list>
 
 <p padding>
-  <button ion-button color="danger" block (click)="login()">登录</button>
-  <a (click)="call()">注册账户</a>
+  <button [hidden]="!toLogin" ion-button color="primary" block (click)="login()">登录</button>
+  <button [hidden]="toLogin" ion-button color="danger" block (click)="register()">注册</button>
+  <a (click)="toggle()">我要{{tip}}</a>
 </p>
 
 </ion-content>
