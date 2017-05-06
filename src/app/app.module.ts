@@ -24,7 +24,7 @@ import { DiaryService } from '../services/DiaryService';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';
-
+import { Health } from '@ionic-native/health';
 import { PhotoLibrary } from '@ionic-native/photo-library';
 import { CDVPhotoLibraryPipe } from './cdvphotolibrary.pipe.ts';
 
@@ -68,6 +68,7 @@ import { CDVPhotoLibraryPipe } from './cdvphotolibrary.pipe.ts';
     PicDetailsPage
   ],
   providers: [
+    Health,
     PhotoLibrary,
     HttpService,
     UserService,

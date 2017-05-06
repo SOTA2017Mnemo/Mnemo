@@ -24,4 +24,15 @@
       <img *ngFor="let libraryItem of showpics" [src]="libraryItem.thumbnailURL | cdvphotolibrary">
     </button>
   </ion-list>
+  <ion-list>
+    <ion-list-header class="listHeader">
+      当日行走
+    </ion-list-header>
+    <ion-item>
+      {{steps}}步
+    </ion-item>
+    <ion-item>
+      {{distance}}米
+    </ion-item>
+  </ion-list>
 </ion-content>

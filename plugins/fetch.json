@@ -105,5 +105,13 @@
         },
         "is_top_level": false,
         "variables": {}
+    },
+    "cordova-plugin-health": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-health"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

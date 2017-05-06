@@ -36,6 +36,9 @@
         },
         "cordova-plugin-photo-library": {
             "PACKAGE_NAME": "com.ionicframework.mnemosyne382995"
+        },
+        "cordova-plugin-health": {
+            "PACKAGE_NAME": "com.ionicframework.mnemosyne382995"
         }
     },
     "dependent_plugins": {

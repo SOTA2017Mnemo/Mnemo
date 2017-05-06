@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { WritePage } from '../write/write';
 import { ViewChild } from '@angular/core';
 import { Slides } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-index',
@@ -19,11 +20,17 @@ export class IndexPage {
     weeks: Array<{date:number,isThisMonth:boolean,festival:string}>;
     dates: Array<{week:Array<{date:number,isThisMonth:boolean,festival:string}>}>;
     clicked: number;
-    constructor(public navCtrl: NavController) {
+    name: string;
+    constructor(public navCtrl: NavController, public storage: Storage) {
         this.week= ['日','一','二','三','四','五','六'];
         this.dates = [];
         this.weeks = [];
         this.clicked = 0;
+        this.storage.ready().then(() => {
+          this.storage.get('name').then((result) => {
+            this.name=result;
+          })
+        });
 
         for(let i = 0; i < 5; i++) {
             for(let j=1;j<8;j++){
@@ -39,11 +46,12 @@ export class IndexPage {
     }
 
     itemTapped(event) {
+        let date=new Date();
         this.navCtrl.push(WritePage,{
             date:
-                {year:2017,
-                month:4,
-                day:6}
+                {year:date.getFullYear(),
+                month:date.getMonth(),
+                day:date.getDate()}
         });
     }
 

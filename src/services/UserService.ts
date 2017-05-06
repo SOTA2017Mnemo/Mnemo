@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class UserService {
-  url='http://http://120.76.144.133:9080/Diary/user';
+  url='http://120.76.144.133:9080/Diary/user';
   constructor(private http: Http) { }
   login(account,password) {
     let headers = new Headers({

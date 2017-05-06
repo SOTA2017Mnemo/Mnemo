@@ -15,9 +15,11 @@ export class LoginPage {
 	check:any;
   tip:any='注册';
   toLogin=1;
+
   constructor(public viewCtrl: ViewController,private userService: UserService,public storage: Storage,public navCtrl: NavController) {
 
   }
+
   register(){
     this.userService.register(this.account,this.password,this.username).then(data=>this.afterRegister(data));
   }
@@ -25,7 +27,7 @@ export class LoginPage {
   login(){
   	this.userService.login(this.account,this.password).then(data=>this.afterLogin(data));
   }
-  
+
   afterRegister(data){
     if(data.status==="200"){
       alert("Register success！");
@@ -45,7 +47,7 @@ export class LoginPage {
         this.storage.set("isLogin",true);
         this.storage.set('account',this.account);
         this.storage.set('password',this.password);
-        alert(JSON.parse(data.data).id);
+        this.storage.set('name',JSON.parse(data.data).name);
         this.storage.set('id',JSON.parse(data.data).id);
       });
       this.navCtrl.setRoot(TabsPage);

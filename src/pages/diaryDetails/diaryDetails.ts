@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController,NavParams } from 'ionic-angular';
 import { PhotoLibrary,LibraryItem } from '@ionic-native/photo-library';
-import { PicDetailsPage } from './picDetails/picDetails'
+import { PicDetailsPage } from './picDetails/picDetails';
+import { Health } from '@ionic-native/health';
 
 
 const THUMBNAIL_WIDTH = 120;
@@ -26,7 +27,9 @@ export class DiaryDetailsPage {
   pics: LibraryItem[];
   showpics: LibraryItem[];
   date: {year:number,month:number,day:number};
-  constructor(public navCtrl: NavController,private photoLibrary: PhotoLibrary,private navParams: NavParams) {
+  steps: string;
+  distance: string;
+  constructor(public navCtrl: NavController,private photoLibrary: PhotoLibrary,private navParams: NavParams,private health: Health) {
       navParams.get('id');
     this.date={
         year:2017,
@@ -36,6 +39,29 @@ export class DiaryDetailsPage {
     this.pics = [];
     this.showpics = [];
     let that=this;
+
+    this.health.isAvailable()
+        .then((available:boolean) => {
+            this.health.requestAuthorization([
+                'steps','distance'
+            ])
+            .then(()=>{
+                this.health.queryAggregated({startDate: new Date(new Date().getTime()-24 * 60 * 60 * 1000),endDate: new Date(),dataType:'steps',bucket: 'day'})
+                .then((result)=>{
+                    that.steps=result[result.length-1].value;
+                })
+                .catch(e => console.log(e));
+                this.health.queryAggregated({startDate: new Date(new Date().getTime()-24 * 60 * 60 * 1000),endDate: new Date(),dataType:'distance',bucket: 'day'})
+                .then((result)=>{
+                    that.distance=result[result.length-1].value.split('.')[0];
+                })
+                .catch(e => console.log(e));
+            })
+            .catch(e => console.log(e));
+        })
+        .catch(e => console.log(e));
+
+
     this.photoLibrary.requestAuthorization().then(() => {
         this.photoLibrary.getLibrary({thumbnailWidth: THUMBNAIL_WIDTH, thumbnailHeight: THUMBNAIL_HEIGHT}).subscribe({
             next: library => {
@@ -44,14 +70,6 @@ export class DiaryDetailsPage {
                     &&that.date.month==libraryItem.creationDate.getMonth()
                     &&that.date.day==libraryItem.creationDate.getDate()){
                         that.pics.push(libraryItem);
-                        console.log(libraryItem.id);          // ID of the photo
-                        console.log(libraryItem.photoURL);    // Cross-platform access to photo
-                        console.log(libraryItem.thumbnailURL);// Cross-platform access to thumbnail
-                        console.log(libraryItem.fileName);
-                        console.log(libraryItem.width);
-                        console.log(libraryItem.height);
-                        console.log(libraryItem.latitude);
-                        console.log(libraryItem.longitude);
                     }
                 });
             },
