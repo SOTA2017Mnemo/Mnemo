@@ -14,6 +14,7 @@ import { ChangePage } from '../pages/account/change/change';
 import { DiaryDetailsPage } from '../pages/diaryDetails/diaryDetails';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { LoginPage } from '../pages/login/login'
+import { PicDetailsPage } from '../pages/diaryDetails/picDetails/picDetails'
 
 
 import { HttpModule }    from '@angular/http';
@@ -23,6 +24,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';
 
 import { PhotoLibrary } from '@ionic-native/photo-library';
+import { CDVPhotoLibraryPipe } from './cdvphotolibrary.pipe.ts';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { PhotoLibrary } from '@ionic-native/photo-library';
     ChangePage,
     DiaryDetailsPage,
     LoginPage,
-    WelcomePage
+    WelcomePage,
+    CDVPhotoLibraryPipe,
+    PicDetailsPage
   ],
   imports: [
     HttpModule,
@@ -58,7 +62,8 @@ import { PhotoLibrary } from '@ionic-native/photo-library';
     LoginPage,
     ChangePage,
     DiaryDetailsPage,
-    WelcomePage
+    WelcomePage,
+    PicDetailsPage
   ],
   providers: [
     PhotoLibrary,

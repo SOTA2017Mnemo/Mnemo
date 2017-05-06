@@ -5,4 +5,23 @@
 </ion-header>
 
 <ion-content>
+  <ion-list>
+    <ion-list-header>
+      内容
+    </ion-list-header>
+    <div padding>
+      <p>今天是天气晴朗的一天呢</p>
+      <p>好气啊</p>
+      <p>嗨呀</p>
+      <p>起来嗨</p>
+    </div>
+  </ion-list>
+  <ion-list>
+    <ion-list-header class="listHeader">
+      当日照片(共{{pics.length}}张)
+    </ion-list-header>
+    <button ion-item class="showpics" (click)="itemTapped($event)">
+      <img *ngFor="let libraryItem of showpics" [src]="libraryItem.thumbnailURL | cdvphotolibrary">
+    </button>
+  </ion-list>
 </ion-content>

@@ -15,14 +15,15 @@ export class MyApp {
   rootPage:any = TabsPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public storage: Storage) {
-    this.storage.get('firstIn').then((result) => { 
-      if(result){
-        this.storage.get('isLogin').then((result) => {
-          if(result){
+    this.storage.get('firstIn').then((firstIn) => { 
+      if(firstIn){
+        this.storage.get('isLogin').then((isLogin) => {
+          if(isLogin){
             this.rootPage = TabsPage; 
           }
           else{
-            this.rootPage = LoginPage;
+            //this.rootPage = LoginPage;
+            this.rootPage = TabsPage; 
           }
         })
       } 

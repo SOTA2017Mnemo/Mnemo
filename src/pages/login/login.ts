@@ -35,6 +35,7 @@ export class LoginPage {
   	if(data.status==="200"){
   		alert("Login success！");
       this.storage.ready().then(() => {
+        this.storage.set("isLogin",true);
         this.storage.set('account',this.account);
         this.storage.set('password',this.password);
       });

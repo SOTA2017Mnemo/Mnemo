@@ -1,10 +1,10 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      2017年5月1日
+      {{date.year}}年{{date.month+1}}月{{date.day}}日
     </ion-title>
     <ion-buttons end>
-      <button ion-button color="primary">写好了</button>
+      <button ion-button color="primary" (click)="done()">写好了</button>
     </ion-buttons>
   </ion-navbar>
 
@@ -17,9 +17,10 @@
       <img src="{{pic.path}}" />
     </ion-slide>
   </ion-slides>
-  <ion-textarea placeholder="此刻我想说..." class="diary_content" >
+  <ion-textarea placeholder="此刻我想说..." class="diary_content" [(ngModel)]="diary">
       
   </ion-textarea>
+  <img *ngFor="let libraryItem of todayPic" [src]="libraryItem.photoURL | cdvphotolibrary">
 </ion-content>
 
 

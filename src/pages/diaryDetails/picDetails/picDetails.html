@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+        {{date.year}}年{{date.month+1}}月{{date.day}}日
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <img *ngFor="let libraryItem of pics" [src]="libraryItem.photoURL | cdvphotolibrary">
+  </ion-list>
+</ion-content>

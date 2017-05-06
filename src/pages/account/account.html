@@ -59,6 +59,5 @@
   <ion-item-group>
     <ion-item-divider></ion-item-divider>
   </ion-item-group>
-  <button [hidden]="isLogin" (click)="toLogin()" ion-button full color="primary">登录</button>
-  <button [hidden]="!isLogin" (click)="logout()" ion-button full color="danger">注销</button>
+  <button (click)="logout()" ion-button full color="danger">注销</button>
 </ion-content>

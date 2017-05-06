@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ChangePage } from './change/change'
-
-import { ModalController,NavController,NavParams } from 'ionic-angular';
+import { ModalController,NavController } from 'ionic-angular';
 import { LoginPage } from '../login/login'
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-account',
@@ -17,7 +17,7 @@ export class AccountPage {
   birthday:string
   alertTime:string
   isLogin:boolean=false;
-  constructor(public navCtrl: NavController,public modalCtrl:ModalController) {
+  constructor(public navCtrl: NavController,public modalCtrl:ModalController, public storage: Storage) {
     this.name="keyrm";
     this.alert=true;
     this.password=false;
@@ -29,16 +29,12 @@ export class AccountPage {
       name: this.name
     });
   }
-  toLogin(){
-  	let loginModal=this.modalCtrl.create(LoginPage);
-  	loginModal.onDidDismiss(data=>{
-  	 if(data==="ok"){
-  	 	this.isLogin=true;
-  	 }
-  	})
-  	loginModal.present();
-  }
+
   logout(){
-  	this.isLogin=false;
+  	this.storage.ready().then(() => {
+      this.storage.remove("account");
+      this.storage.remove("password");
+      this.storage.set("isLogin",false);
+    });
   }
 }

@@ -39,7 +39,12 @@ export class IndexPage {
     }
 
     itemTapped(event) {
-        this.navCtrl.push(WritePage);
+        this.navCtrl.push(WritePage,{
+            date:
+                {year:2017,
+                month:4,
+                day:6}
+        });
     }
 
     setClicked(number){
