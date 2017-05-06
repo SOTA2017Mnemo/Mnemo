@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class DiaryService {
-  url='http://dev.note.tunnel.qydev.com/diary';
+  url='http://120.76.144.133:9080/Diary/diary';
   constructor(private http: Http) { }
   writeDiary(title,userId,content,weather) {
     let headers = new Headers({

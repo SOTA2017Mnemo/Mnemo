@@ -20,4 +20,40 @@ export class HttpService {
         .subscribe(data => resolve(data), err => reject(err))
     })
   }
+    star(userId) {
+    let headers = new Headers({
+            'Content-Type': 'application/x-www-form-urlencoded'
+        });
+        let options = new RequestOptions({
+            headers: headers
+        });
+    let body= "userId="+userId;
+    return new Promise((resolve, reject) => {
+      this.http.post('http://120.76.144.133:9080/Diary/starSign', body, options )
+        .map(res => res.json())
+        .subscribe(data => resolve(data), err => reject(err))
+    })
+  }
+  almanac() {
+    return new Promise((resolve, reject) => {
+      this.http.post('http://120.76.144.133:9080/Diary/almanac')
+        .map(res => res.json())
+        .subscribe(data => resolve(data), err => reject(err))
+    })
+  }
+    date(year,month){
+    let headers = new Headers({
+            'Content-Type': 'application/x-www-form-urlencoded'
+        });
+        let options = new RequestOptions({
+            headers: headers
+        });
+    let body= "year="+year+"&month="+month;
+    return new Promise((resolve, reject) => {
+      this.http.post('http://120.76.144.133:9080/Diary/calendar', body, options )
+        .map(res => res.json())
+        .subscribe(data => resolve(data), err => reject(err))
+    })
+  }
+
 }
