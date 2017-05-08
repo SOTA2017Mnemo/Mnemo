@@ -5,13 +5,12 @@
 </ion-header>
 
 <ion-content padding class="timeline">
+  
   <div>
-    <ion-card tappable *ngFor="let diary of diarys" (click)="itemTapped($event,diary.diaryId,diary.date)">
+    <ion-card class="lanren" *ngFor="let diary of diarys" tappable (click)="itemTapped($event,diary.diaryId,diary.date)">
+      <div class="ribbon-lanren-green"><div class="ribbon-green">{{diary.weather}}</div></div>
       <ion-card-header> 
         <h2>{{diary.date.year}}.{{diary.date.month+1}}.{{diary.date.day}}</h2>
-        <p>
-          {{diary.weather}}
-        </p> 
       </ion-card-header>
       <ion-card-content>  
         <p>
@@ -19,5 +18,7 @@
         </p>
       </ion-card-content>
     </ion-card>
-  </div>
+	</div>​
+    
+  
 </ion-content>

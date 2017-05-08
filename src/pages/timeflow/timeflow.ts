@@ -30,7 +30,7 @@ export class TimeflowPage {
   }
 
   ionViewWillEnter(){  
-    this.diaryService.diaryList(0,10,this.userId).then((result)=>{
+    this.diaryService.diaryList(0,10,this.userId,2017).then((result)=>{
       this.pushContent(result);
     });
     
