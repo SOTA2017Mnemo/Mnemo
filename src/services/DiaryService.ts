@@ -35,14 +35,28 @@ export class DiaryService {
         .subscribe(data => resolve(data), err => reject(err))
     })
   }
-  diaryList(index,count,id) {
+  diaryList(index,count,id,year) {
     let headers = new Headers({
             'Content-Type': 'application/x-www-form-urlencoded'
         });
         let options = new RequestOptions({
             headers: headers
         });
-    let body= "method=diaryList&index="+index+"&count="+count+"&user_id="+id;
+    let body= "method=diaryList&index="+index+"&count="+count+"&user_id="+id+"&year="+year;
+    return new Promise((resolve, reject) => {
+      this.http.post(this.url, body, options )
+        .map(res => res.json())
+        .subscribe(data => resolve(data), err => reject(err))
+    })
+  }
+  diaryNum(id,year) {
+    let headers = new Headers({
+            'Content-Type': 'application/x-www-form-urlencoded'
+        });
+        let options = new RequestOptions({
+            headers: headers
+        });
+    let body= "method=diaryNum&userId="+id+"&year="+year;
     return new Promise((resolve, reject) => {
       this.http.post(this.url, body, options )
         .map(res => res.json())
