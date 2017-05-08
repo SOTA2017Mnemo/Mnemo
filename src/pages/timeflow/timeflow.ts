@@ -21,9 +21,11 @@ export class TimeflowPage {
     });
   }
 
-  itemTapped(event,diaryId) {
+  itemTapped(event,diaryId,date) {
+    console.log(diaryId);
     this.navCtrl.push(DiaryDetailsPage,{
-      id:diaryId
+      id:diaryId,
+      date:date
     });
   }
 
@@ -38,11 +40,17 @@ export class TimeflowPage {
     for(let i=0;i<data.data.length;i++){
       console.log(data.data[i]);
       this.diarys.push({
-        diaryDate: JSON.parse(data.data[i]).diaryDate,
         content: JSON.parse(data.data[i]).content,
-        weather: JSON.parse(data.data[i]).weather
+        weather: JSON.parse(data.data[i]).weather,
+        diaryId: JSON.parse(data.data[i]).id,
+        date: {
+          year: Number(JSON.parse(data.data[i]).diaryDate.split('-')[0]),
+          month: Number(JSON.parse(data.data[i]).diaryDate.split('-')[1])-1,
+          day: Number(JSON.parse(data.data[i]).diaryDate.split('-')[2])
+        }
       });
     }
+    console.log(this.diarys);
   }
 
 }

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>keyrm</ion-title>
+    <ion-title>{{date.year}}.{{date.month+1}}.{{date.day}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -10,10 +10,7 @@
       内容
     </ion-list-header>
     <div padding>
-      <p>今天是天气晴朗的一天呢</p>
-      <p>好气啊</p>
-      <p>嗨呀</p>
-      <p>起来嗨</p>
+      <p>{{content}}</p>
     </div>
   </ion-list>
   <ion-list>

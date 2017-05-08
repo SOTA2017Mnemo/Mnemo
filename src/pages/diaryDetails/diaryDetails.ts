@@ -3,6 +3,7 @@ import { NavController,NavParams } from 'ionic-angular';
 import { PhotoLibrary,LibraryItem } from '@ionic-native/photo-library';
 import { PicDetailsPage } from './picDetails/picDetails';
 import { Health } from '@ionic-native/health';
+import { DiaryService } from '../../services/DiaryService';
 
 
 const THUMBNAIL_WIDTH = 120;
@@ -29,17 +30,15 @@ export class DiaryDetailsPage {
   date: {year:number,month:number,day:number};
   steps: string;
   distance: string;
-  constructor(public navCtrl: NavController,private photoLibrary: PhotoLibrary,private navParams: NavParams,private health: Health) {
-      navParams.get('id');
-    this.date={
-        year:2017,
-        month:4,
-        day:3
-    }
+  diaryId: number;
+  content: string;
+  constructor(public navCtrl: NavController,private photoLibrary: PhotoLibrary,
+        private navParams: NavParams,private health: Health,private diaryService:DiaryService) {
+    this.diaryId=navParams.get('id');
+    this.date=navParams.get('date');
     this.pics = [];
     this.showpics = [];
     let that=this;
-
     this.health.isAvailable()
         .then((available:boolean) => {
             this.health.requestAuthorization([
@@ -83,12 +82,22 @@ export class DiaryDetailsPage {
     .catch(err => console.log('permissions were not granted'));
   }
 
+  getDiary(id){
+    this.diaryService.queryDiary(this.diaryId).then((data:any) => {
+        this.content=JSON.parse(data.data).content;
+    });
+  }
+
 
   itemTapped(event) {
     this.navCtrl.push(PicDetailsPage,{
         pics : this.pics,
         date : this.date
     });
+  }
+
+  ionViewWillEnter(){ 
+      this.getDiary(this.diaryId);
   }
 
 }

@@ -6,9 +6,9 @@
 
 <ion-content padding class="timeline">
   <div>
-    <ion-card (click)="itemTapped($event)" tappable *ngFor="let diary of diarys">
-      <ion-card-header>
-        <h2>{{diary.diaryDate}}</h2>
+    <ion-card tappable *ngFor="let diary of diarys" (click)="itemTapped($event,diary.diaryId,diary.date)">
+      <ion-card-header> 
+        <h2>{{diary.date.year}}.{{diary.date.month+1}}.{{diary.date.day}}</h2>
         <p>
           {{diary.weather}}
         </p> 
