@@ -4,6 +4,7 @@ import { WritePage } from '../write/write';
 import { ViewChild } from '@angular/core';
 import { Slides } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { DiaryDetailsPage } from '../diaryDetails/diaryDetails' ;
 
 @Component({
   selector: 'page-index',
@@ -29,7 +30,7 @@ export class IndexPage {
         this.storage.ready().then(() => {
           this.storage.get('name').then((result) => {
             this.name=result;
-          })
+          });
         });
 
         for(let i = 0; i < 5; i++) {
@@ -62,5 +63,11 @@ export class IndexPage {
     ionViewDidEnter(){
         this.goToSlide();
     }
+
+    DiaryDetails(event,diaryId) {
+    this.navCtrl.push(DiaryDetailsPage,{
+      id:diaryId
+    });
+  }
 
 }

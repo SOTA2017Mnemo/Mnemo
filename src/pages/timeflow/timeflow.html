@@ -6,25 +6,16 @@
 
 <ion-content padding class="timeline">
   <div>
-    <ion-card (click)="itemTapped($event)" tappable>
-      <ion-card-content>
-        <ion-card-title>
-          2017.5.5
-        </ion-card-title>
+    <ion-card (click)="itemTapped($event)" tappable *ngFor="let diary of diarys">
+      <ion-card-header>
+        <h2>{{diary.diaryDate}}</h2>
         <p>
-          The most popular industrial group ever, and largely
-          responsible for bringing the music to a mass audience.
-        </p>
-      </ion-card-content>
-    </ion-card>
-    <ion-card>
-      <ion-card-content>
-        <ion-card-title>
-          2017.5.5
-        </ion-card-title>
+          {{diary.weather}}
+        </p> 
+      </ion-card-header>
+      <ion-card-content>  
         <p>
-          The most popular industrial group ever, and largely
-          responsible for bringing the music to a mass audience.
+          {{diary.content}}
         </p>
       </ion-card-content>
     </ion-card>

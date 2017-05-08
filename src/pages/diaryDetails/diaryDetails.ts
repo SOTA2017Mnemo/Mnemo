@@ -53,7 +53,7 @@ export class DiaryDetailsPage {
                 .catch(e => console.log(e));
                 this.health.queryAggregated({startDate: new Date(new Date().getTime()-24 * 60 * 60 * 1000),endDate: new Date(),dataType:'distance',bucket: 'day'})
                 .then((result)=>{
-                    that.distance=result[result.length-1].value.split('.')[0];
+                    that.distance=result[result.length-1].value;
                 })
                 .catch(e => console.log(e));
             })
