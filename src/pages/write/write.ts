@@ -3,6 +3,9 @@ import { NavController,NavParams,AlertController } from 'ionic-angular';
 import { Camera } from 'ionic-native';
 import { Slides } from 'ionic-angular';//注入轮播
 import { PhotoLibrary,LibraryItem } from '@ionic-native/photo-library';
+import { HttpService } from '../../services/HttpService';
+import { DiaryService } from '../../services/DiaryService';
+import { Storage } from '@ionic/storage';
 
 const THUMBNAIL_WIDTH = 120;
 const THUMBNAIL_HEIGHT = 96;
@@ -23,10 +26,20 @@ export class WritePage{
   date:any;
   todayPic: LibraryItem[];
   diary:any;
+  tq:string;
+  qw:string;
+  userId:number;
 
-  constructor(public navCtrl: NavController,public alertCtrl: AlertController,private navParams: NavParams,private photoLibrary: PhotoLibrary) {
+  constructor(public navCtrl: NavController,public alertCtrl: AlertController,
+              private navParams: NavParams,private photoLibrary: PhotoLibrary,
+              private httpService: HttpService,private diaryService: DiaryService, public storage: Storage) {
   	this.date=navParams.get('date');
     this.todayPic=[];
+    this.storage.ready().then(() => {
+      this.storage.get('id').then((result)=>{
+        this.userId=result;
+      });
+    });
   }
 
   done() {
@@ -47,12 +60,22 @@ export class WritePage{
         {
           text: '是',
           handler: () => {
-            this.getTodayPhoto();
+            this.diaryService.writeDiary(this.userId,this.diary,this.tq+this.qw+'度','','').then(()=>{
+              this.navCtrl.pop();
+            });
           }
         }
       ]
     });
     confirm.present();
+  }
+
+  ionViewDidEnter(){
+    this.httpService.weather().then((result:any)=>{
+      console.log(result);
+      this.tq=result.data.tq;
+      this.qw=result.data.qw;
+    });
   }
 
   getTodayPhoto() {

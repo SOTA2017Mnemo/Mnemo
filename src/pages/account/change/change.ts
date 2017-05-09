@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the Change page.
@@ -14,9 +15,16 @@ import { NavController, NavParams } from 'ionic-angular';
 export class ChangePage {
 
   name:string;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
     this.name = navParams.get('name');
 
+  }
+
+  ensure(){
+    this.storage.ready().then(() => {
+      this.storage.set('name',this.name);
+      this.navCtrl.pop();
+    });
   }
 
 }

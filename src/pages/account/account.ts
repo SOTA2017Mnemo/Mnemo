@@ -19,11 +19,7 @@ export class AccountPage {
   alertTime:string
   isLogin:boolean=false;
   constructor(public navCtrl: NavController,public modalCtrl:ModalController, public storage: Storage,private app: App) {
-    this.storage.ready().then(() => {
-      this.storage.get("name").then((result)=>{
-        this.name=result;
-      });
-    });
+    
     this.alert=true;
     this.password=false;
     this.gender="m";
@@ -45,4 +41,13 @@ export class AccountPage {
     });
     this.app.getRootNav().setRoot(LoginPage);
   }
+
+  ionViewWillEnter(){
+    this.storage.ready().then(() => {
+      this.storage.get("name").then((result)=>{
+        this.name=result;
+      });
+    });
+  }
+
 }

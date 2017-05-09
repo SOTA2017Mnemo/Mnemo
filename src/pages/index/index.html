@@ -10,29 +10,6 @@
     </ion-fab>
     
     <ion-slides class="ionSlides">
-        <ion-slide>
-            <table class="calender">
-                <tr>
-                    <td *ngFor="let string of week">
-                        <div class="weekdays">
-                            {{string}}
-                        </div>
-                    </td>
-                </tr>
-                <tr *ngFor="let week of dates">
-                    <td *ngFor="let date of week.week" [ngClass]="{'clicked':clicked == date.date}" (click)="setClicked(date.date)" tappable>
-                        <div>
-                            <div class="dates">
-                                {{date.date}}
-                            </div>
-                            <div class="festival">
-                                愚人节
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </ion-slide>
 
         <ion-slide>
             <table class="calender">
@@ -44,38 +21,45 @@
                     </td>
                 </tr>
                 <tr *ngFor="let week of dates">
-                    <td *ngFor="let date of week.week" [ngClass]="{'clicked':clicked == date.date}" (click)="setClicked(date.date)" tappable>
+                    <td *ngFor="let date of week.week" [ngClass]="{'clicked':clicked == date.date}" (click)="setClicked(date.date,date.isThisMonth)" tappable>
                         <div>
                             <div class="dates">
                                 {{date.date}}
                             </div>
                             <div class="festival">
-                                愚人节
+                                {{date.festival}}
                             </div>
                         </div>
                     </td>
                 </tr>
             </table>
         </ion-slide>
-
-
-
-
 
     </ion-slides>
+    <ion-toolbar>
+      <p start>{{year}}年{{month+1}}月</p>
+      <ion-buttons end>
+        <button ion-button color="primary" (click)="prev()">
+            <p>前一月 </p>
+        </button>
+        <button ion-button color="primary" (click)="next()">
+            <p> 后一月</p>
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
     <ion-list>
         <ion-list-header class="listHeader">
             该日所记
         </ion-list-header>
-        <ion-card (click)="DiaryDetails($event)" tappable>
-            <img src="assets/img/test1.png"/>
+        <ion-card class="lanren" (click)="DiaryDetails(diary.id,diary.year,diary.month,diary.day)" tappable *ngFor="let diary of today">
+            <div class="ribbon-lanren-green"><div class="ribbon-green">{{diary.weather}}</div></div>
+            <img [src]="diary.picPath | cdvphotolibrary"/>
             <ion-card-content>
                 <ion-card-title>
-                    2017.5.1
+                    {{diary.year}}.{{diary.month+1}}.{{diary.day}}
                 </ion-card-title>
                 <p>
-                    The most popular industrial group ever, and largely
-                    responsible for bringing the music to a mass audience.
+                    {{diary.content}}
                 </p>
             </ion-card-content>
         </ion-card>
@@ -84,15 +68,15 @@
         <ion-list-header class="listHeader">
             去年今日
         </ion-list-header>
-        <ion-card>
+        <ion-card class="lanren" *ngFor="let diary of others" (click)="DiaryDetails(diary.id,diary.year,diary.month,diary.day)">
+            <div class="ribbon-lanren-green"><div class="ribbon-green">{{diary.weather}}</div></div>
             <img src="assets/img/test2.JPG"/>
             <ion-card-content>
                 <ion-card-title>
-                    2016.5.1
+                    {{diary.year}}.{{diary.month+1}}.{{diary.day}}
                 </ion-card-title>
                 <p>
-                    The most popular industrial group ever, and largely
-                    responsible for bringing the music to a mass audience.
+                    {{diary.content}}
                 </p>
             </ion-card-content>
         </ion-card>

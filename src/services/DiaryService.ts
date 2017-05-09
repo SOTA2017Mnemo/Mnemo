@@ -70,7 +70,7 @@ export class DiaryService {
         let options = new RequestOptions({
             headers: headers
         });
-    let body= "method=diaryList&userId="+userId+"&month="+month+"&day="+day;
+    let body= "method=diaryDay&userId="+userId+"&month="+month+"&day="+day;
     return new Promise((resolve, reject) => {
       this.http.post(this.url, body, options )
         .map(res => res.json())

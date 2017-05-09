@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-
+import { Storage } from '@ionic/storage';
 import { TimeflowPage } from '../timeflow/timeflow';
+import { DiaryService } from '../../services/DiaryService';
 
 @Component({
   selector: 'page-years',
@@ -9,12 +10,26 @@ import { TimeflowPage } from '../timeflow/timeflow';
 })
 export class YearsPage {
 
-  constructor(public navCtrl: NavController) {
-
+  userId: string;
+  years=[];
+  constructor(public navCtrl: NavController, public storage: Storage,private diaryService:DiaryService) {
+    this.storage.ready().then(() => {
+      this.storage.get('id').then((result)=>{
+        this.userId=result;
+      });
+    });
   }
 
-  itemTapped(event) {
-    this.navCtrl.push(TimeflowPage);
+  itemTapped(event,year) {
+    this.navCtrl.push(TimeflowPage,{
+      year:year
+    });
+  }
+
+  ionViewWillEnter(){  
+    this.diaryService.diaryNum(this.userId).then((data:any)=>{
+      this.years=data.years;
+    });
   }
 
 }

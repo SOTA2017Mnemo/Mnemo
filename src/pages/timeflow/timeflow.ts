@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { DiaryDetailsPage } from '../diaryDetails/diaryDetails';
 import { DiaryService } from '../../services/DiaryService';
@@ -13,7 +13,9 @@ export class TimeflowPage {
 
   userId: string;
   diarys=[];
-  constructor(public navCtrl: NavController, public storage: Storage,private diaryService:DiaryService) {
+  year: number;
+  constructor(public navCtrl: NavController, public storage: Storage,private diaryService:DiaryService,private navParams: NavParams) {
+    this.year=navParams.get('year');
     this.storage.ready().then(() => {
       this.storage.get('id').then((result)=>{
         this.userId=result;
@@ -22,7 +24,6 @@ export class TimeflowPage {
   }
 
   itemTapped(event,diaryId,date) {
-    console.log(diaryId);
     this.navCtrl.push(DiaryDetailsPage,{
       id:diaryId,
       date:date
@@ -30,15 +31,17 @@ export class TimeflowPage {
   }
 
   ionViewWillEnter(){  
-    this.diaryService.diaryList(0,10,this.userId,2017).then((result)=>{
+    this.diaryService.diaryList(0,10,this.userId,this.year).then((result)=>{
       this.pushContent(result);
     });
-    
   }
+
+  ionViewWillLeave(){  
+    this.diarys=[]; 
+  }  
 
   pushContent(data){
     for(let i=0;i<data.data.length;i++){
-      console.log(data.data[i]);
       this.diarys.push({
         content: JSON.parse(data.data[i]).content,
         weather: JSON.parse(data.data[i]).weather,
@@ -50,7 +53,6 @@ export class TimeflowPage {
         }
       });
     }
-    console.log(this.diarys);
   }
 
 }

@@ -45,12 +45,12 @@ export class DiaryDetailsPage {
                 'steps','distance'
             ])
             .then(()=>{
-                this.health.queryAggregated({startDate: new Date(new Date().getTime()-24 * 60 * 60 * 1000),endDate: new Date(),dataType:'steps',bucket: 'day'})
+                this.health.queryAggregated({startDate: new Date(new Date(this.date.year,this.date.month,this.date.day).getTime()-24 * 60 * 60 * 1000),endDate: new Date(this.date.year,this.date.month,this.date.day),dataType:'steps',bucket: 'day'})
                 .then((result)=>{
                     that.steps=result[result.length-1].value;
                 })
                 .catch(e => console.log(e));
-                this.health.queryAggregated({startDate: new Date(new Date().getTime()-24 * 60 * 60 * 1000),endDate: new Date(),dataType:'distance',bucket: 'day'})
+                this.health.queryAggregated({startDate: new Date(new Date(this.date.year,this.date.month,this.date.day).getTime()-24 * 60 * 60 * 1000),endDate: new Date(this.date.year,this.date.month,this.date.day),dataType:'distance',bucket: 'day'})
                 .then((result)=>{
                     that.distance=result[result.length-1].value;
                 })
@@ -69,6 +69,7 @@ export class DiaryDetailsPage {
                     &&that.date.month==libraryItem.creationDate.getMonth()
                     &&that.date.day==libraryItem.creationDate.getDate()){
                         that.pics.push(libraryItem);
+                        console.log(libraryItem.photoURL);
                     }
                 });
             },
@@ -76,6 +77,8 @@ export class DiaryDetailsPage {
             complete: () => { 
                 if(this.pics.length>3)
                     this.showpics=this.pics.slice(0,3);
+                else
+                    this.showpics=this.pics;
                 console.log('could not get photos'); }
         });
     })

@@ -6,10 +6,10 @@
 
 <ion-content class="card-background-page outer-content">
 
-  <ion-card (click)="itemTapped($event)" tappable>
+  <ion-card (click)="itemTapped($event,year.year)" tappable *ngFor="let year of years">
     <img src="assets/img/Unknown.png"/>
-    <div class="card-title">2017</div>
-    <div class="card-subtitle">41篇</div>
+    <div class="card-title">{{year.year}}</div>
+    <div class="card-subtitle">{{year.num}}篇</div>
   </ion-card>
 
 </ion-content>
